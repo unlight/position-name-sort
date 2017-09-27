@@ -1,0 +1,36 @@
+{
+  "name": "position-name-sort",
+  "version": "0.0.1",
+  "description": "Designed to track dependencies in package.json and check file modification time",
+  "main": "lib",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "npm run t",
+    "clean": "rm -rf lib",
+    "build": "npm run compile",
+    "compile": "tsc",
+    "compile:w": "tsc -w",
+    "prebuild": "npm run clean",
+    "t": "npm run mocha -- src/*.spec.ts",
+    "test:w": "npm run mocha -- --watch-extensions ts --watch src/**/*.spec.ts",
+    "mocha": "ts-node -F node_modules/mocha/bin/_mocha",
+    "debug": "inspect node_modules/ts-node/dist/_bin.js -F \"node_modules/mocha/bin/_mocha\" \"src/*.spec.ts\"",
+    "release": "npm run build && np"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.31",
+    "mocha": "^3.5.3",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {},
+  "directories": {
+    "lib": "lib"
+  }
+}
