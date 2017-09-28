@@ -1,22 +1,22 @@
-export function createSort(id: string) {
-    return (data: any[]): any[] => {
-        const array: any[] = [...data];
-        const withPositions = array.filter(item => item.position);
-        withPositions.forEach(positioned => {
-            const index = array.findIndex(item => item[id] === positioned.position[1]);
-            if (index !== -1) {
-                if (positioned.position[0] === 'after') {
-                    array.splice(index, 0, positioned);
-                } else if (positioned.position[0] === 'before') {
-                    if (index === 0) {
-                        array.unshift(positioned);
-                    } else {
-                        array.splice(index, 0, positioned);
+export function positionNameSort(id: string) {
+    return (items: any[]): any[] => {
+        const result = [...items];
+        result.filter(item => item.position)
+            .forEach(positioned => {
+                const index = result.findIndex(item => item[id] === positioned.position[1]);
+                if (index !== -1) {
+                    if (positioned.position[0] === 'after') {
+                        result.splice(index + 1, 0, positioned);
+                    } else if (positioned.position[0] === 'before') {
+                        if (index === 0) {
+                            result.unshift(positioned);
+                        } else {
+                            result.splice(index, 0, positioned);
+                        }
                     }
                 }
-            }
-        });
-        return uniqBy(array, o => o[id]);
+            });
+        return uniqBy(result, o => o[id]);
     };
 }
 
