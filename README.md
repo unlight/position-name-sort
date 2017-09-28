@@ -12,3 +12,7 @@ array.push({ id: 'Andre', position: ['after', 'Cory'] });
 
 console.log(sort(array).map(n => n.id)); // Yung,Darnell,Cory,Andre
 ```
+
+## Changelog
+* 0.0.1
+  - first release
